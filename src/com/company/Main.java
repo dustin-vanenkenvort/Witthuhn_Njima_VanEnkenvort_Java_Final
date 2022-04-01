@@ -7,7 +7,5 @@ public class Main {
         System.out.println("Test");
         // test GitHub push
         // test 2 electic boogaloo
-
-        ///testdddddd
     }
 }
