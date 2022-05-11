@@ -7,24 +7,29 @@ import java.util.*;
  * It generate the mazes and check the restrictions
  * It holds the mazeArray which is a array of Cells
  */
-public class Maze {
-    private final int WIDTH = 20;
-    private final int HEIGHT = 15;
-    private final Cell[][] mazeArray = new Cell[HEIGHT][WIDTH];
+public final class Maze {
+    private static final int WIDTH = 20;
+    private static final int HEIGHT = 15;
+    private static final Cell[][] mazeArray = new Cell[HEIGHT][WIDTH];
 
-    public int getWidth() {
+    public static int getWidth() {
         return WIDTH;
     }
 
-    public int getHeight() {
+    public static int getHeight() {
         return HEIGHT;
     }
 
-    public Cell[][] getMazeArray() {
+    public static Cell[][] getMazeArray() {
         return mazeArray;
     }
 
-    public Maze() {
+    public static Maze getInstance()
+    {
+        Maze maze = new Maze();
+        return maze;
+    }
+    private Maze() {
         boolean isValidMaze = false;
         int[] position;
         int wallCount;

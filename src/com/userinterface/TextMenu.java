@@ -7,7 +7,7 @@ package com.userinterface;
  */
 public class TextMenu {
     private String[] headers = {"DIRECTIONS", "LEGEND", "MOVES"};
-    private String[] directions = {"Kill 3 Assassins!"};
+    private String[] directions = {"Kill 3 Assassin!"};
     private String[] legend = {"#: Wall",
             "@: You (a hero)", "!: Assassin",
             "$: BattleToken", ".: Unexplored space"};

@@ -4,11 +4,24 @@ package com.models;
  * Assassin class handles the Assassin element
  * It holds the position, it's backTrack and if it's dead
  */
-public class Assassin {
+public class Assassin extends Character{
     private boolean isDead = false;
     private int[] position;
     private GameElements.Move backTrack;
 
+    public Assassin(String name, String description) {
+        super(name, description);
+    }
+
+    public Assassin(String name) {
+        super(name);
+    }
+
+    @Override
+    public String toString()
+    {
+        return super.toString() + " and he is an assassin";
+    }
     public boolean isDead() {
         return isDead;
     }

@@ -2,13 +2,15 @@ package com.userinterface;
 
 import com.models.*;
 
+import java.io.IOException;
+
 /**
  * Main class handles the options of the menu options
  * It holds the objects in the TextUI and the main game object
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Game game = new Game();
         TextMenu textMenu = new TextMenu();
         TextMaze textMaze = new TextMaze();
