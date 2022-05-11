@@ -1,5 +1,8 @@
 package com.models;
 
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -9,9 +12,9 @@ import java.util.Random;
  * It holds the Hero, BattleToken and Assassin and have a public enum Move
  * It handles the initializing and moving the Elements to reflect on Maze
  */
-public class GameElements {
-    private final Hero hero = new Hero();
-    private final Assassin[] assassins = {new Assassin(), new Assassin(), new Assassin()};
+public class GameElements{
+    private final Hero hero = new Hero("Narutu");
+    private final Assassin[] assassins = {new Assassin("Migalou"), new Assassin("Nessan"), new Assassin("Area")};
     private final BattleToken battleToken = new BattleToken();
     public enum Move {UP, DOWN, LEFT, RIGHT}
 
@@ -30,7 +33,6 @@ public class GameElements {
     public void initializeHero(Maze maze) {
         Cell[][] mazeArray = maze.getMazeArray();
         int[] position = hero.getPosition();
-
         mazeArray[position[1]][position[0]].setElement(Cell.Element.HERO);
         heroSurroundView(maze);
     }
@@ -132,7 +134,10 @@ public class GameElements {
 
             if (cell.getElement() != Cell.Element.WALL
                     && cell.getElement() != Cell.Element.HERO) {
-                battleToken.setPosition(new int[]{x, y});
+                ArrayList a= new ArrayList();
+                a.add(x);
+                a.add(y);
+                battleToken.setPosition(a);
                 cell.setElement(Cell.Element.BATTLETOKEN);
                 isAllowed = true;
             }
@@ -141,7 +146,10 @@ public class GameElements {
 
     public void refreshBattleToken(Maze maze) {
         Cell[][] mazeArray = maze.getMazeArray();
-        int[] position = battleToken.getPosition();
+
+        ArrayList<Integer> array= battleToken.getPosition();
+        Integer[] position= array.toArray(new Integer[0]);
+
         Cell cell = mazeArray[position[1]][position[0]];
 
         // Show BattleToken when Hero/Monster not on it

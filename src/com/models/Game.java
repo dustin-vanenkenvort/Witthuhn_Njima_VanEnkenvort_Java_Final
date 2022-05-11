@@ -1,6 +1,8 @@
 package com.models;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.function.Function;
 
 /**
  * Game handles the main game logic
@@ -8,7 +10,8 @@ import java.util.Arrays;
  * It handles the start and each round of the game and the collision of the objects
  */
 public class Game {
-    private final Maze maze = new Maze();
+
+    private final Maze maze;
     private final GameElements gameElements = new GameElements();
     private boolean isGameOver = false;
     private boolean hasWon = false;
@@ -16,6 +19,11 @@ public class Game {
     private int battleTokensHeld;
     private int assassinsAlive;
     private boolean isValidMove;
+
+    public Game()
+    {
+        maze = Maze.getInstance();
+    }
 
     public Maze getMaze() {
         return maze;
@@ -102,7 +110,7 @@ public class Game {
             if (!assassin.isDead() && Arrays.equals(heroPosition, assassin.getPosition())) {
                 if (hero.getBattleToken() > 0) {
                     hero.loseBattleToken();
-                    assassinsAlive--;
+                    Function<Integer, Integer> minusOne = assassinsAlive -> assassinsAlive-1;
                     assassin.setDead(true);
                     mazeArray[yHero][xHero].setElement(Cell.Element.HERO);
                 } else {
@@ -115,9 +123,11 @@ public class Game {
 
     private void checkHeroBattleToken() {
         Hero hero = gameElements.getHero();
-        BattleToken battleToken = gameElements.getBattleToken();
-
-        if (Arrays.equals(hero.getPosition(), battleToken.getPosition())) {
+        BattleToken<Integer> battleToken = gameElements.getBattleToken();
+        ArrayList<Integer> array= battleToken.getPosition();
+        Integer[] heroPositions = Arrays.stream(hero.getPosition()).boxed().toArray( Integer[]::new );
+        Integer[] positions = array.toArray(new Integer[0]);
+        if (Arrays.equals(heroPositions,positions)) {
             hero.gainBattleToken();
             gameElements.initializeBattleToken(maze);
         }

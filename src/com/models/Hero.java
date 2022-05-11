@@ -4,11 +4,24 @@ package com.models;
  * Hero handles the Hero element information
  * It holds the battletoken count and it's position
  */
-public class Hero {
+public class Hero extends Character{
     private int battletoken = 0;
     private int[] position = {1,1};
     private int[] previousPosition;
 
+    public Hero(String name, String descripstion) {
+        super(name, descripstion);
+    }
+
+    public Hero(String name) {
+        super(name);
+    }
+
+    @Override
+    public String toString()
+    {
+        return super.toString() + " and he is a hero";
+    }
     public int getBattleToken() {
         return battletoken;
     }

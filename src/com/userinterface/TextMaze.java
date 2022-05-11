@@ -2,6 +2,8 @@ package com.userinterface;
 
 import com.models.*;
 
+import java.util.function.Consumer;
+
 /**
  * TextMaze handles the output of the Maze
  * It holds the many char elements for the Maze
@@ -20,14 +22,14 @@ public class TextMaze {
         Cell[][] mazeArray = maze.getMazeArray();
         int height = maze.getHeight();
         int width = maze.getWidth();
-
-        System.out.println("\n" + title);
+        Consumer<String> display = a -> System.out.println(a);
+        display.accept("\n" + title);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Cell cell = mazeArray[y][x];
                 printElement(cell, isHidden);
             }
-            System.out.println();
+            display.accept("\n");
         }
     }
 
