@@ -30,7 +30,6 @@ public class GameElements {
     public void initializeHero(Maze maze) {
         Cell[][] mazeArray = maze.getMazeArray();
         int[] position = hero.getPosition();
-
         mazeArray[position[1]][position[0]].setElement(Cell.Element.HERO);
         heroSurroundView(maze);
     }
